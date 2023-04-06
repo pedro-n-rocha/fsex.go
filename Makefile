@@ -16,7 +16,7 @@ TARGET_BIN = target/$(BINARY_NAME)
 CONTAINER_IMAGE_NAME  = $(BINARY_NAME):$(HASH)
 
 build:
-	 $(CMD) run --rm -it -v $(PWD):/workdir -w /workdir  $(BUILDER_IMG) sh -c \
+	 $(CMD) run --rm -it -v $(PWD):/workdir -w /workdir -v $(PWD)/cache/go-build:/root/.cache/go-build -v $(PWD)/cache/mod:/go/pkg/mod  $(BUILDER_IMG) sh -c \
   	'cd src &&go build -buildvcs=false -ldflags="-s -w -X main.buildVersion=${VERSION} -X main.buildDate=${BUILD_DATE}" -o ../target/$(BINARY_NAME)  .'
 
 test:
