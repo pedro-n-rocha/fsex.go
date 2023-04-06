@@ -22,15 +22,13 @@ type ManifestEntry struct {
 }
 
 func main() {
+
 	var args struct {
 		Input  string `arg:"required,positional" help:"input image tar file"`
 		Output string `arg:"required,-o"  help:"output directory"`
 	}
 
 	arg.MustParse(&args)
-
-	log.Info(args.Input)
-	log.Info(args.Output)
 
 	var inp = args.Input
 	var out = args.Output
